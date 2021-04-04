@@ -125,8 +125,11 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - "frontend-build"    
-      - run: npm audit
+            - "frontend-build" 
+      - run: 
+              command: |
+                  cd frontend
+                  npm audit --audit-level=critical
 
   scan-backend:
     docker:
