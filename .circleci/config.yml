@@ -104,11 +104,15 @@ jobs:
       # Your job code here
     
       - checkout
+      - restore_cache:
+          keys:
+            - "backend-build"
       - run:
           name: sheno backend test
           command: |
             cd backend
-            npm run test     
+            npm i
+            npm run test 
       
   scan-frontend:
     docker:
