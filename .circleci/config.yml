@@ -140,7 +140,14 @@ jobs:
       # Restore from cache
       # Your job code here
       - checkout
-      - run: npm audit 
+      - restore_cache:
+          keys:
+            - "backend-build" 
+      - run: 
+              command: |
+                  cd backend
+                  npm audit --audit-level=critical
+
       
   deploy-infrastructure:
     docker:
