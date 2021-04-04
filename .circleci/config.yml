@@ -91,7 +91,10 @@ jobs:
       # Checkout code from git
       # Restore from cache
       # Your job code here
-
+      - checkout
+      - run: npm i
+      - run: npm run test
+      
   scan-frontend:
     docker:
       # Docker image here
