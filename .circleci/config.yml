@@ -79,7 +79,10 @@ jobs:
       # Checkout code from git
       # Restore from cache
       # Your job code here
-      - checkout        
+      - checkout    
+      - restore_cache:
+          keys:
+            - "frontend-build"
       - run:
           name: sheno frontend test
           command: |
