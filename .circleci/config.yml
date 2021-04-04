@@ -103,6 +103,8 @@ jobs:
       # Checkout code from git
       # Restore from cache
       # Your job code here
+      - checkout
+      - run: npm audit
 
   scan-backend:
     docker:
@@ -112,7 +114,9 @@ jobs:
       # Checkout code from git
       # Restore from cache
       # Your job code here
-
+      - checkout
+      - run: npm audit 
+      
   deploy-infrastructure:
     docker:
       # Docker image here that supports AWS CLI
