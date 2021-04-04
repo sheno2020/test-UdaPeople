@@ -96,9 +96,18 @@ jobs:
       # Checkout code from git
       # Restore from cache
       # Your job code here
+    
       - checkout
-      - run: npm i
-      - run: npm run test
+      - restore_cache:
+          keys:
+            - back-end-{{ checksum "backend/package.json" }}
+            
+      - run:
+          name: Run tests with JUnit as reporter
+          command: |
+            cd backend
+            npm add --dev jest-junit
+            npm run test --reporters=jest-junit       
       
   scan-frontend:
     docker:
