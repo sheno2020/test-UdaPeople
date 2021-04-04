@@ -84,6 +84,7 @@ jobs:
           name: sheno frontend test
           command: |
             cd frontend
+            npm i
             npm run test 
         
         
