@@ -79,17 +79,12 @@ jobs:
       # Checkout code from git
       # Restore from cache
       # Your job code here
-      - checkout
-      - restore_cache:
-          keys:
-            - back-end-{{ checksum "frontend/package.json" }}
-            
+      - checkout        
       - run:
-          name: Run tests with JUnit as reporter
+          name: sheno frontend test
           command: |
             cd frontend
-            npm add --dev jest-junit
-            npm run test --reporters=jest-junit     
+            npm run test 
         
         
         
@@ -105,16 +100,11 @@ jobs:
       # Your job code here
     
       - checkout
-      - restore_cache:
-          keys:
-            - back-end-{{ checksum "backend/package.json" }}
-            
       - run:
-          name: Run tests with JUnit as reporter
+          name: sheno backend test
           command: |
             cd backend
-            npm add --dev jest-junit
-            npm run test --reporters=jest-junit       
+            npm run test     
       
   scan-frontend:
     docker:
