@@ -1,0 +1,8 @@
+- name: start server
+  become: yes
+  shell: |
+    cd backend
+    pm2 --name server start npm -- start 
+  register: start_output
+  
+- debug: var=start_output
