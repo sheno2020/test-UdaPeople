@@ -163,8 +163,8 @@ jobs:
               # --parameter-overrides ID="your workflow id"  
               # exit 1
               aws cloudformation deploy \
-                --template-file .circleci/files/backend.yml \
-                --stack-name my-stack
+                --template-file .circleci/files/estcfn.yml \
+                --stack-name my-stack-circleci
                            
               
       - run:
