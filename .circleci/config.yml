@@ -259,7 +259,8 @@ jobs:
           name: Configure server
             # Your code here
             # exit 1
-            command: ansible-playbook -i inventory .circleci/ansible/configure_backend.yml
+            command: | 
+             ansible-playbook -i inventory .circleci/ansible/configure_backend.yml
             environment:
             ANSIBLE_HOST_KEY_CHECKING: False
       - destroy_environment:
