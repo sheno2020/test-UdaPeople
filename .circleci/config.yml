@@ -247,8 +247,6 @@ jobs:
             # Your code here
             # exit 1
             
-          name: Install dependencies and run build to generate dist folder to copy into remote server 
-          command: | 
             pip install awscli && apk add --update ansible 
             cp -rv backend/*  .circleci/ansible/roles/configure-server/files/backend
       - run: ls .circleci/ansible/roles/configure-server/files/backend
