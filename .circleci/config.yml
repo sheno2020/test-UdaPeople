@@ -213,11 +213,50 @@ jobs:
       # Checkout code from git
       # Add ssh keys with fingerprint
       # attach workspace
+      steps:
+      - add_ssh_keys:
+          fingerprints: [77:50:06:fa:0d:9f:b2:0e:66:6a:46:6a:5d:68:36:b1]
+      - checkout
+      - restore_cache:
+          keys: 
+            - back-end-{{ checksum "backend/package.json" }}
+
+      - run: apk add tar gzip
+      - attach_workspace:
+          at: ./
+      - run: mkdir -p  .circleci/ansible/roles/configure-server/files/backend
+      - run:
+          name: Make .env file
+          command: |
+            cd backend
+            echo "ENVIRONMENT=production" > env
+            echo "NODE_ENV=production" >> env
+            echo "TYPEORM_CONNECTION=$TYPEORM_CONNECTION" >> env
+            echo "TYPEORM_ENTITIES=$TYPEORM_ENTITIES" >> env
+            echo "TYPEORM_HOST=$TYPEORM_HOST" >> env
+            echo "TYPEORM_PORT=$TYPEORM_PORT" >> env
+            echo "TYPEORM_USERNAME=$TYPEORM_USERNAME" >> env
+            echo "TYPEORM_PASSWORD=$TYPEORM_PASSWORD" >> env
+            echo "TYPEORM_DATABASE=$TYPEORM_DATABASE" >> env
+      
+      
+      
       - run:
           name: Install dependencies
           command: |
             # Your code here
-            exit 1
+            # exit 1
+            
+          name: Install dependencies and run build to generate dist folder to copy into remote server 
+          command: | 
+            pip install awscli && apk add --update ansible 
+            cp -rv backend/*  .circleci/ansible/roles/configure-server/files/backend
+      - run: ls .circleci/ansible/roles/configure-server/files/backend
+      - run: apk update && apk add --upgrade rsync openssh     
+        
+        
+        
+            
       - run:
           name: Configure server
           command: |
