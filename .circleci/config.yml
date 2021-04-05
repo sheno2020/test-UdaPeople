@@ -190,7 +190,7 @@ jobs:
           name: Add back-end ip to ansible inventory
           command: |
           
-            echo "[server]" > inventory
+            echo "[web]" > inventory
             aws cloudformation describe-stacks \
             --stack-name "backend-stack-${CIRCLE_WORKFLOW_ID}" \
             --query "Stacks[0].Outputs[?OutputKey==\`BackendURL\`].OutputValue" \
