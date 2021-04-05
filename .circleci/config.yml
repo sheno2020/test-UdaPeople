@@ -1,7 +1,4 @@
 version: 2.1
-
-orbs:
-  aws-cloudformation: orbss/aws-cloudformation@0.1.6
   
 commands:
   destroy-environment:
