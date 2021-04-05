@@ -164,7 +164,7 @@ jobs:
               # --stack-name "your back-end stack name with workflow id" \
               # --parameter-overrides ID="your workflow id"  
               # exit 1
-              --stack-name "backend-${CIRCLE_WORKFLOW_ID:0:7}" \
+              --stack-name backend-sheno \
               --parameter-overrides ID="backend-${CIRCLE_WORKFLOW_ID:0:7}"
               
               
