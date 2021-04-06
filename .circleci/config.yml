@@ -250,7 +250,7 @@ jobs:
             command: |
                  # exit 1
 
-               ansible-playbook -i inventory .circleci/ansible/configure_backend.yml
+               ansible-playbook -i inventory .circleci/ansible/configure-server.yml
             environment:
               ANSIBLE_HOST_KEY_CHECKING: False
         - destroy_environment:
