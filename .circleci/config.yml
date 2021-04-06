@@ -206,7 +206,6 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
-      - run:
       #steps:
       # Checkout code from git
       # Add ssh keys with fingerprint
@@ -218,7 +217,7 @@ jobs:
         #    keys:
         #      - back-end-{{ checksum "backend/package.json" }}
 
-        - run: apk add tar gzip
+      - run: apk add tar gzip
         - attach_workspace:
             at: ./
         - run: mkdir -p  .circleci/ansible/roles/configure-server/files/backend
