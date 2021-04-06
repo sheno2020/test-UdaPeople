@@ -203,13 +203,15 @@ jobs:
     docker:
       # Docker image here that supports Ansible
       - image: python:3.7-alpine3.11
-    #steps:
+    steps:
+      # Checkout code from git
+      - checkout
+      - run:
+      #steps:
       # Checkout code from git
       # Add ssh keys with fingerprint
       # attach workspace
-    steps:
-       - checkout 
-       - add_ssh_keys:
+          - add_ssh_keys:
             fingerprints: [77:50:06:fa:0d:9f:b2:0e:66:6a:46:6a:5d:68:36:b1]
         
         #- restore_cache:
