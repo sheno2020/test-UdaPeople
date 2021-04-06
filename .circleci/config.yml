@@ -230,7 +230,7 @@ jobs:
               echo "TYPEORM_PASSWORD=$TYPEORM_PASSWORD" >> env
               echo "TYPEORM_DATABASE=$TYPEORM_DATABASE" >> env
 
-     - run:
+      - run:
             name: Install dependencies
             command: |
               # Your code here
