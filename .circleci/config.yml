@@ -189,6 +189,7 @@ jobs:
              --query 'Reservations[*].Instances[*].PublicIpAddress' \
              --output text >> inventory 
                cat inventory
+               pwd
             # Your code here
             # exit 1
       - run: yum install -y tar gzip
