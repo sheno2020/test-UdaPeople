@@ -248,7 +248,7 @@ jobs:
             name: Configure server
             # Your code here
             command: |
-              #   exit 1
+                 exit 1
 
                ansible-playbook -i inventory .circleci/ansible/configure_backend.yml
             environment:
