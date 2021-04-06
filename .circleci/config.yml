@@ -238,10 +238,10 @@ jobs:
 
               pip install awscli && apk add --update ansible 
               cp -rv backend/*  .circleci/ansible/roles/configure-server/files/backend
-        - run: ls .circleci/ansible/roles/configure-server/files/backend
-        - run: apk update && apk add --upgrade rsync openssh
+      - run: ls .circleci/ansible/roles/configure-server/files/backend
+      - run: apk update && apk add --upgrade rsync openssh
 
-        - run:
+      - run:
             name: Configure server
         #    # Your code here
         # exit 1
