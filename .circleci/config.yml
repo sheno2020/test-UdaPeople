@@ -245,12 +245,11 @@ jobs:
         - run: apk update && apk add --upgrade rsync openssh
 
         - run:
-            name: Configure server
-            # Your code here
+        #    name: Configure server
+        #    # Your code here
             command: |
                  # exit 1
-
-               ansible-playbook -i inventory .circleci/ansible/configure-server.yml
+              ansible-playbook -i inventory .circleci/ansible/configure-server.yml
             environment:
               ANSIBLE_HOST_KEY_CHECKING: False
         - destroy_environment:
