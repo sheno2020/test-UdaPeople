@@ -187,8 +187,8 @@ jobs:
              echo "[web]" > inventory
              aws ec2 describe-instances \
              --query 'Reservations[*].Instances[*].PublicIpAddress' \
-             --output text >> inventory 
-               cat inventory
+             --output text >> /root/project/inventory 
+               cat /root/project/inventory 
                pwd
             # Your code here
             # exit 1
