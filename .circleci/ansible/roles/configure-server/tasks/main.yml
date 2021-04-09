@@ -1,3 +1,4 @@
+---
 - name: "update apt packages."
   become: yes
   apt:
@@ -15,11 +16,11 @@
 
 - name: "install dependencies."
   become: yes
-  shell: |
-    curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
-    apt-get install -y nodejs
+  apt:
+    name: ["nodejs", "npm"]
+    state: latest
+    update_cache: yes
 
-    
 - name: "install pm2"
   become: yes
   npm:
@@ -28,35 +29,16 @@
     production: yes
     state: present
 
+- name: Creates directory
+  file:
+    path: ~/web
+    state: directory
 
-- name: install rsync
-  become: yes
-  shell: |
-    apt install -y rsync
+# - name: Copy index test page
+#   template:
+#     src: "files/index.js"
+#     dest: "~/web/index.js"
 
-- name: copy ditribution folder to remote server
-  become: yes
-  synchronize:
-    src: backend
-    dest: ~/
-
-- name: make env file
-  become: yes
+- name: Executing node
   shell: |
-    cd backend
-    cp env .env 
-    rm env  
-    cat .env
-  register: env_output
-  
-- debug: var=env_output
-  
-- name: build backend application
-  become: yes
-  shell: |
-    cd backend/
-    npm i 
-    npm run build
-  register: copy_output
-    
-- debug: var=copy_output
+    pm2 start npm -- run start
