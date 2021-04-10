@@ -225,11 +225,11 @@ jobs:
             --output text >> inventory
    
 
-      - run:
-          name: create Monitoring infrastructure
-          command: |
-            aws cloudformation deploy --template-file .circleci/files/prometheus_cfn.yml \
-            --stack-name "prometheus-overwatch"
+      #- run:
+      #    name: create Monitoring infrastructure
+      #    command: |
+      #      aws cloudformation deploy --template-file .circleci/files/prometheus_cfn.yml \
+      #      --stack-name "prometheus-overwatch"
       - run:
           name: get public IP of overwatch
           command: |
@@ -238,8 +238,9 @@ jobs:
             --stack-name "prometheus-overwatch" \
             --query "Stacks[0].Outputs[?OutputKey==\`prometheusDNSName\`].OutputValue" \
             --output text >> inventory    
-
-        
+            cat inventory    
+            pwd
+            
       - run: yum install -y tar gzip
       - persist_to_workspace:
           root: ./
