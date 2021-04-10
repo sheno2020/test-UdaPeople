@@ -2,7 +2,7 @@ version: 2.1
 
 #orbs:
 #  slack: circleci/slack@3.4.2
-
+#
 #commands:
 #  slack-notify:  
 #    steps:
@@ -10,7 +10,7 @@ version: 2.1
 #          channel: cicd-pipeline
 #          mentions: "ozayr,"
 #          fail_only: true
-
+#
   destroy_environment:
     description: Destroy backend and frontend cloudformation stacks given a workflow ID.
     parameters:
